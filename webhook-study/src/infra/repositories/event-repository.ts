@@ -1,17 +1,47 @@
 import type { WebhookEvent } from "../../domain/entities/webhook-event.js";
-
-// Simulação de "banco de dados" em memória
-const events: WebhookEvent[] = [];
+import { pool } from "../db/connection.js";
 
 export const eventRepository = {
   async save(event: WebhookEvent): Promise<void> {
-    events.push(event);
-    // Aqui você pode adicionar lógica para evitar duplicidade, etc.
+    const payload = (event as WebhookEvent & { payload?: unknown }).payload ?? event.data;
+
+    await pool.query(
+      `
+      INSERT INTO webhook_events (event_id, event_type, payload, status)
+      VALUES ($1, $2, $3::jsonb, $4)
+      ON CONFLICT (event_id) DO NOTHING
+      `,
+      [event.event_id, event.event_type, JSON.stringify(payload), "received"]
+    );
   },
 
   async findById(event_id: string): Promise<WebhookEvent | undefined> {
-    return events.find(e => e.event_id === event_id);
-  },
+    const result = await pool.query<{
+      event_id: string;
+      event_type: string;
+      payload: unknown;
+      created_at: string;
+    }>(
+      `
+      SELECT event_id, event_type, payload, created_at
+      FROM webhook_events
+      WHERE event_id = $1
+      LIMIT 1
+      `,
+      [event_id]
+    );
 
-  // Outros métodos podem ser adicionados conforme necessário
+    if (result.rowCount === 0) {
+      return undefined;
+    }
+
+    const row = result.rows[0];
+
+    return {
+      event_id: row.event_id,
+      event_type: row.event_type,
+      timestamp: row.created_at,
+      data: row.payload
+    };
+  },
 };
