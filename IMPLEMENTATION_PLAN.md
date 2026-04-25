@@ -222,7 +222,7 @@ Checklist:
 - [x] Teste de health.
 - [x] Teste de webhook valido.
 - [x] Teste de webhook invalido.
-- [ ] Teste de idempotencia inicial (event_id repetido).
+- [x] Teste de idempotencia inicial (event_id repetido).
 
 Comando:
 
@@ -241,13 +241,13 @@ Objetivo:
 - Simular problema real de backend e mostrar maturidade tecnica.
 
 Checklist:
-- [ ] Idempotencia por event_id.
-- [ ] Estados: received, processing, processed, failed.
+- [x] Idempotencia por event_id.
+- [x] Estados: received, processing, processed, failed.
 - [ ] Retry com backoff simples.
 - [ ] Endpoint de replay: POST /admin/events/:eventId/replay
 
 Criterio de pronto:
-- event_id repetido nao duplica processamento.
+- [x] event_id repetido nao duplica processamento.
 - failed pode ser reenviado para processamento.
 
 ---

@@ -65,5 +65,12 @@ export const eventRepository = {
       timestamp: row.created_at,
       data: row.payload
     };
+  },
+
+  async updateStatus(eventId: string, status: 'received' | 'processing' | 'processed' | 'failed'): Promise<void> {
+    await pool.query(
+      `UPDATE webhook_events SET status = $1 WHERE event_id = $2`,
+      [status, eventId]
+    );
   }
 };
