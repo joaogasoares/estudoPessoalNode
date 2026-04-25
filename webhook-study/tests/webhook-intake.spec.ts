@@ -9,7 +9,7 @@ describe("POST /webhooks/provider-a", () => {
       .send({
         event_id: "evt_test_001",
         event_type: "payment.succeeded",
-        timestamp: "2026-04-22T12:00:00.000Z",
+        timestamp: new Date().toISOString(),
         data: { amount: 100 }
       });
 
@@ -24,7 +24,7 @@ describe("POST /webhooks/provider-a", () => {
       .send({
         event_id: "evt_test_002",
         // event_type faltando
-        timestamp: "2026-04-22T12:00:00.000Z",
+        timestamp: new Date().toISOString(),
         data: { amount: 100 }
       });
 
@@ -39,7 +39,7 @@ describe("POST /webhooks/provider-a", () => {
       .send({
         event_id: "evt_test_003",
         event_type: "payment.succeeded",
-        timestamp: "2026-04-22T12:00:00.000Z",
+        timestamp: new Date().toISOString(),
         data: { amount: 100 }
       });
 

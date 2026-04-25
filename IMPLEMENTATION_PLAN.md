@@ -109,7 +109,7 @@ npm test
 ```
 
 Criterio de pronto:
-- Scripts existem e executam sem erro de configuracao.
+- [x] Scripts existem e executam sem erro de configuracao.
 
 ---
 
@@ -147,8 +147,8 @@ src/
 ```
 
 Checklist:
-- [ ] GET /health respondendo 200.
-- [ ] POST /webhooks/provider-a com validacao basica de payload.
+- [x] GET /health respondendo 200.
+- [x] POST /webhooks/provider-a com validacao basica de payload.
 
 Execucao:
 
@@ -163,8 +163,8 @@ curl http://localhost:3000/health
 ```
 
 Criterio de pronto:
-- Health responde 200.
-- Payload invalido retorna erro consistente.
+- [x] Health responde 200.
+- [x] Payload invalido retorna erro consistente.
 
 ---
 
@@ -190,8 +190,8 @@ Campos minimos sugeridos:
 - created_at
 
 Checklist:
-- [ ] Evento valido e salvo com status received.
-- [ ] Evento invalido nao salva.
+- [x] Evento valido e salvo com status received.
+- [x] Evento invalido nao salva.
 
 Checkpoint:
 
@@ -201,7 +201,7 @@ npm test
 ```
 
 Criterio de pronto:
-- Fluxo basico completo funcionando.
+- [x] Fluxo basico completo funcionando.
 
 ---
 
@@ -219,9 +219,9 @@ tests/
 ```
 
 Checklist:
-- [ ] Teste de health.
-- [ ] Teste de webhook valido.
-- [ ] Teste de webhook invalido.
+- [x] Teste de health.
+- [x] Teste de webhook valido.
+- [x] Teste de webhook invalido.
 - [ ] Teste de idempotencia inicial (event_id repetido).
 
 Comando:
@@ -231,7 +231,7 @@ npm test
 ```
 
 Criterio de pronto:
-- Suite passa de forma estavel.
+- [x] Suite passa de forma estavel (Testes de health e intake).
 
 ---
 
