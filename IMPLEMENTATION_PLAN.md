@@ -16,14 +16,17 @@ Tempo sugerido: 8-10h por semana.
 ## Etapa 0 - Regra do jogo (30-45 min)
 
 Objetivo:
+
 - Definir como voce vai medir progresso de entrevista, e nao so escrever codigo.
 
 Checklist:
+
 - [ ] Criar rubric com 6 criterios: decomposicao, comunicacao, testes, debugging, design de API, trade-offs.
 - [ ] Definir nota minima por sessao (exemplo: nenhuma dimensao abaixo de 2/4).
 - [ ] Reservar 2 blocos de implementacao + 2 blocos de simulacao por semana.
 
 Criterio de pronto:
+
 - Voce sabe como vai se avaliar em cada simulacao.
 
 ---
@@ -31,6 +34,7 @@ Criterio de pronto:
 ## Etapa 1 - Ambiente e bootstrap (1-2h)
 
 Objetivo:
+
 - Criar base executavel local com Node + TypeScript + testes.
 
 ### 1.1 Criar pasta do projeto
@@ -52,6 +56,7 @@ npm -v
 ```
 
 Esperado:
+
 - Node LTS instalado.
 - npm funcionando.
 
@@ -109,6 +114,7 @@ npm test
 ```
 
 Criterio de pronto:
+
 - [x] Scripts existem e executam sem erro de configuracao.
 
 ---
@@ -116,6 +122,7 @@ Criterio de pronto:
 ## Etapa 2 - Estrutura e primeiro endpoint (1.5-2h)
 
 Objetivo:
+
 - Validar ciclo editar -> rodar -> conferir resposta.
 
 Crie as pastas/arquivos:
@@ -147,6 +154,7 @@ src/
 ```
 
 Checklist:
+
 - [x] GET /health respondendo 200.
 - [x] POST /webhooks/provider-a com validacao basica de payload.
 
@@ -163,6 +171,7 @@ curl http://localhost:3000/health
 ```
 
 Criterio de pronto:
+
 - [x] Health responde 200.
 - [x] Payload invalido retorna erro consistente.
 
@@ -171,6 +180,7 @@ Criterio de pronto:
 ## Etapa 3 - Persistencia ponta a ponta (2-3h)
 
 Objetivo:
+
 - Receber, validar, salvar evento e retornar resposta estavel.
 
 ### 3.1 Subir Postgres (opcao Docker)
@@ -182,6 +192,7 @@ docker run --name webhook-pg -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=webhoo
 ### 3.2 Criar tabela webhook_events
 
 Campos minimos sugeridos:
+
 - id
 - event_id
 - event_type
@@ -190,6 +201,7 @@ Campos minimos sugeridos:
 - created_at
 
 Checklist:
+
 - [x] Evento valido e salvo com status received.
 - [x] Evento invalido nao salva.
 
@@ -201,6 +213,7 @@ npm test
 ```
 
 Criterio de pronto:
+
 - [x] Fluxo basico completo funcionando.
 
 ---
@@ -208,6 +221,7 @@ Criterio de pronto:
 ## Etapa 4 - Testes essenciais (1.5-2h)
 
 Objetivo:
+
 - Garantir confiabilidade basica.
 
 Arquivos sugeridos:
@@ -219,6 +233,7 @@ tests/
 ```
 
 Checklist:
+
 - [x] Teste de health.
 - [x] Teste de webhook valido.
 - [x] Teste de webhook invalido.
@@ -231,6 +246,7 @@ npm test
 ```
 
 Criterio de pronto:
+
 - [x] Suite passa de forma estavel (Testes de health e intake).
 
 ---
@@ -238,15 +254,18 @@ Criterio de pronto:
 ## Etapa 5 - Idempotencia, processamento e replay (2-3h)
 
 Objetivo:
+
 - Simular problema real de backend e mostrar maturidade tecnica.
 
 Checklist:
+
 - [x] Idempotencia por event_id.
 - [x] Estados: received, processing, processed, failed.
-- [ ] Retry com backoff simples.
-- [ ] Endpoint de replay: POST /admin/events/:eventId/replay
+- [x] Retry com backoff simples.
+- [x] Endpoint de replay: POST /admin/events/:eventId/replay
 
 Criterio de pronto:
+
 - [x] event_id repetido nao duplica processamento.
 - failed pode ser reenviado para processamento.
 
@@ -255,14 +274,17 @@ Criterio de pronto:
 ## Etapa 6 - Logging e observabilidade minima (1h)
 
 Objetivo:
+
 - Conseguir debugar ao vivo na entrevista.
 
 Checklist:
-- [ ] request_id em logs.
+
+- [x] request_id em logs.
 - [ ] Logs de transicao de status.
 - [ ] Logs de erro com causa e tentativa.
 
 Criterio de pronto:
+
 - Voce explica uma falha pelos logs sem depender de debugger visual.
 
 ---
@@ -270,14 +292,17 @@ Criterio de pronto:
 ## Etapa 7 - Refatoracao guiada (1-2h)
 
 Objetivo:
+
 - Demonstrar melhoria incremental sem regressao.
 
 Checklist:
+
 - [ ] Escolher 1 trecho acoplado.
 - [ ] Refatorar para responsabilidade unica.
 - [ ] Provar com testes que comportamento foi preservado.
 
 Criterio de pronto:
+
 - Antes/depois claro e defendivel tecnicamente.
 
 ---
@@ -285,9 +310,11 @@ Criterio de pronto:
 ## Etapa 8 - Simulacao de pair programming (2x por semana)
 
 Objetivo:
+
 - Treinar o formato da entrevista tecnica.
 
 Roteiro por sessao (45-60 min):
+
 1. Clarificar requisitos e limites.
 2. Propor plano minimo.
 3. Implementar milestone pequeno.
@@ -295,6 +322,7 @@ Roteiro por sessao (45-60 min):
 5. Discutir trade-offs.
 
 Checklist por sessao:
+
 - [ ] Fiz perguntas de clarificacao antes de codar.
 - [ ] Narrei raciocinio em ingles.
 - [ ] Entreguei incremento funcional validado.
@@ -305,12 +333,14 @@ Checklist por sessao:
 ## Etapa 9 - Preparacao final TWU (1-2h)
 
 Checklist:
+
 - [ ] Pitch de arquitetura em ingles (3-5 min).
 - [ ] 2 trade-offs tecnicos bem explicados.
 - [ ] 3 historias STAR prontas (cultural).
 - [ ] Checklist final de entrevista validado.
 
 Criterio de pronto:
+
 - Voce consegue abrir uma sessao de pairing com seguranca, sem roteiro fechado.
 
 ---
@@ -339,6 +369,7 @@ git status
 ```
 
 Registro da sessao (manual):
+
 - O que entreguei hoje.
 - Onde travei.
 - Primeiro comando da proxima sessao.
