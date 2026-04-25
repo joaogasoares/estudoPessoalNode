@@ -1,0 +1,1 @@
+{"version":3,"file":"webhook-event.d.ts","sourceRoot":"","sources":["webhook-event.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,YAAY;IAC3B,QAAQ,EAAE,MAAM,CAAC;IACjB,UAAU,EAAE,MAAM,CAAC;IACnB,SAAS,EAAE,MAAM,CAAC;IAClB,IAAI,EAAE,OAAO,CAAC;IACd,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB"}

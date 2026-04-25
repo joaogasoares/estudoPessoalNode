@@ -31,11 +31,8 @@ export const eventRepository = {
       [event_id]
     );
 
-    if (result.rowCount === 0) {
-      return undefined;
-    }
-
     const row = result.rows[0];
+    if (!row) return undefined;
 
     return {
       event_id: row.event_id,
@@ -44,4 +41,29 @@ export const eventRepository = {
       data: row.payload
     };
   },
+
+  async findByEventId(eventId: string) {
+    const result = await pool.query<{
+      event_id: string;
+      event_type: string;
+      payload: unknown;
+      created_at: string;
+    }>(
+      `SELECT event_id, event_type, payload, created_at
+       FROM webhook_events
+       WHERE event_id = $1
+       LIMIT 1`,
+      [eventId]
+    );
+
+    const row = result.rows[0];
+    if (!row) return null;
+
+    return {
+      event_id: row.event_id,
+      event_type: row.event_type,
+      timestamp: row.created_at,
+      data: row.payload
+    };
+  }
 };
